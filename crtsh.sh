@@ -4,14 +4,13 @@
 # bash tool "*" => return all subdomains which have astric
 # bash tool "all" => return all subdomains
 
-
 domain=$1
 subs_all=()
 subs_astric=()
 subs_normal=()
 
 getSubs() {
-	subs_all=$(curl -s https://crt.sh/?q=%.$domain | grep $domain | grep TD | sed -e 's/<//g' | sed -e 's/>//g' | sed -e 's/TD//g' | sed -e 's/\///g' | sed -e 's/ //g' | sed -n '1!p' | grep $domain | sort -u)
+	subs_all=$(curl -s https://crt.sh/\?q=$domain\&output\=json | jq -r '.[].name_value' | grep $domain | grep -v '\\' | grep -v "@" | sort -u)
 }
 getSubs
 
