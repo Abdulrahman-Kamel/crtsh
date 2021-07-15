@@ -2,6 +2,8 @@
 
 # bash tool => return all clear subdomains
 # bash tool "*" => return all subdomains which have astric
+# bash tool "all" => return all subdomains
+
 
 domain=$1
 subs_all=()
@@ -25,6 +27,11 @@ if [[ $2 == "*" ]]; then
 	for sub in $subs_astric; do
 		echo $sub
 	done
+elif [[ $2 == "all" ]]; then
+	for sub in $subs_all; do
+		echo $sub
+	done
+
 else
 	for sub in $subs_normal; do
 		echo $sub
